@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Biblioteca</b>UADGP',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -197,7 +197,7 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
+    'classes_sidebar_nav' => 'nav-child-indent',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -315,14 +315,30 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        ['header' => 'MENÚ'],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
+            'text'        => 'Autores',
+            'url'         => '',
+            'icon'        => 'fas fa-book',
             'label_color' => 'success',
+            // 'can'  => 'usuario-index',
+            'submenu' => [
+                [
+                    'text'        => 'Agregar Autor',
+                    'url'         => 'autores/create',
+                    'icon'        => 'fas fa-plus',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-create',
+                ],
+                [
+                    'text'        => 'Ver Autores',
+                    'url'         => 'autores',
+                    'icon'        => 'fa fa-list',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-index',
+                ],
+            ],
         ],
-        ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url' => 'admin/settings',
