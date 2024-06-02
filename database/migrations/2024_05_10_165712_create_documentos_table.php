@@ -24,7 +24,7 @@ return new class extends Migration
 
             // Foreign key constraints
             $table->foreign('autor_id')->references('id')->on('autores')->onDelete('cascade');
-            $table->foreign('tipo_documento_id')->references('id')->on('tipos_documento')->onDelete('cascade');
+            $table->foreign('tipo_documento_id')->references('id')->on('tipos_documentos')->onDelete('cascade');
             $table->timestamps();
         });
     }

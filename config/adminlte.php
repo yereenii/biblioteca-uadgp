@@ -340,6 +340,29 @@ return [
             ],
         ],
         [
+            'text'        => 'Tipos de Documentos',
+            'url'         => '',
+            'icon'        => 'fas fa-book',
+            'label_color' => 'success',
+            // 'can'  => 'usuario-index',
+            'submenu' => [
+                [
+                    'text'        => 'Agregar Tipo de Doc.',
+                    'url'         => 'tipos-documentos/create',
+                    'icon'        => 'fas fa-plus',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-create',
+                ],
+                [
+                    'text'        => 'Ver Tipos de Docs.',
+                    'url'         => 'tipos-documentos',
+                    'icon'        => 'fa fa-list',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-index',
+                ],
+            ],
+        ],
+        [
             'text' => 'profile',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
