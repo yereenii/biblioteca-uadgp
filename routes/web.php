@@ -8,5 +8,8 @@ use App\Http\Controllers\AutoreController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('autores', AutoreController::class);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('autores', AutoreController::class);
+});
+Route::redirect('/', '/home');
