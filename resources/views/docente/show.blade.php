@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('template_title')
     {{ $docente->name ?? __('Show') . " " . __('Docente') }}
