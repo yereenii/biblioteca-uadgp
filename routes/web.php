@@ -7,6 +7,12 @@ use App\Http\Controllers\TiposDocumentoController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\PalabrasClaveController;
 use App\Http\Controllers\PalabrasClaveDocumentoController;
+use App\Http\Controllers\BitacoraConsultaController;
+use App\Http\Controllers\NivelesAcademicoController;
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\InvestigadoreController;
 
 
 
