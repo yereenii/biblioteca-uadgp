@@ -1,8 +1,6 @@
 @extends('adminlte::page')
 
-@section('template_title')
-    {{ $autore->name ?? __('Show') . " " . __('Autore') }}
-@endsection
+@section('title', __('Show').' Autor')
 
 @section('content')
     <section class="content container-fluid">
@@ -11,7 +9,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Autore</span>
+                            <span class="card-title">{{__('Show')}} Autor</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('autores.index') }}"> {{ __('Back') }}</a>

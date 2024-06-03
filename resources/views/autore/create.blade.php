@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 
 
-@section('template_title')
-    {{ __('Create') }} Autore
-@endsection
+@section('title',  __('Create').' Autor')
 
 @section('content')
     <section class="content container-fluid">
@@ -12,7 +10,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Autore</span>
+                        <span class="card-title"> {{ __('Create') }} Autor</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('autores.store') }}"  role="form" enctype="multipart/form-data">

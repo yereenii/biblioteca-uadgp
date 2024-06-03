@@ -1,7 +1,6 @@
 @extends('adminlte::page')
-@section('template_title')
-    Autores
-@endsection
+
+@section('title', 'Autores')
 
 @section('content')
     <div class="container-fluid">
