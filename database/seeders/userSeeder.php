@@ -14,13 +14,6 @@ class userSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'apellido_paterno' => 'Doe',
-            'apellido_materno' => 'Smith',
-            'email' => 'test@example.com',
-            'rol_usuario' => 1
-        ]);
         
         User::create([
             'name' => 'Carlos Arteaga',
@@ -29,6 +22,22 @@ class userSeeder extends Seeder
             'email' => 'carlos@gmail.com',
             'rol_usuario' => 1,
             'password' => bcrypt('Carlos1234'),
+        ]);
+
+        User::create([
+            'name' => 'Alex',
+            'apellido_paterno' => 'Carrillo',
+            'email' => 'alex@gmail.com',
+            'rol_usuario' => 1,
+            'password' => bcrypt('Alex1234'),
+        ]);
+
+        User::create([
+            'name' => 'Yereni',
+            'apellido_paterno' => 'Reyes',
+            'email' => 'Yereni@gmail.com',
+            'rol_usuario' => 1,
+            'password' => bcrypt('Yereni1234'),
         ]);
         
     }
