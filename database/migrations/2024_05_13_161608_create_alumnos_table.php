@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('usuario_id');
             $table->integer('semestre');
+            $table->integer('matricula')->unique();
             $table->unsignedBigInteger('nivel_academico_id');
             $table->timestamps();
 

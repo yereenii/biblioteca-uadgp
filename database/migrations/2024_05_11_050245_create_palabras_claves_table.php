@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('palabras_clave', function (Blueprint $table) {
+        Schema::create('palabras_claves', function (Blueprint $table) {
             $table->id();
             $table->string('palabra');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('palabras_clave');
+        Schema::dropIfExists('palabras_claves');
     }
 };

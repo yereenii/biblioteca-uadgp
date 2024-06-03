@@ -18,7 +18,7 @@ return new class extends Migration
 
             // Definir llaves foráneas
             $table->foreign('documento_id')->references('id')->on('documentos')->onDelete('cascade');
-            $table->foreign('palabra_clave_id')->references('id')->on('palabras_clave')->onDelete('cascade');
+            $table->foreign('palabra_clave_id')->references('id')->on('palabras_claves')->onDelete('cascade');
             
             // Definir llave primaria compuesta
             $table->primary(['documento_id','palabra_clave_id']);
