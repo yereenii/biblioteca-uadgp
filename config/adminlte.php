@@ -570,6 +570,29 @@ return [
             ],
         ],
         ['header' => 'Configuración'],
+        [
+            'text'        => 'Usuarios',
+            'url'         => '',
+            'icon'        => 'far fa-file',
+            'label_color' => 'success',
+            // 'can'  => 'usuario-index',
+            'submenu' => [
+                [
+                    'text'        => 'Agregar',
+                    'url'         => 'users/create',
+                    'icon'        => 'fas fa-plus',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-create',
+                ],
+                [
+                    'text'        => 'Ver',
+                    'url'         => 'users',
+                    'icon'        => 'fa fa-list',
+                    'label_color' => 'success',
+                    // 'can'  => 'usuario-index',
+                ],
+            ],
+        ],
         
     ],
 

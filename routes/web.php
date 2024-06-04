@@ -13,6 +13,7 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InvestigadoreController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('alumnos', AlumnoController::class);
     Route::resource('docentes', DocenteController::class);
     Route::resource('investigadores', InvestigadoreController::class);
+    Route::resource('users', UserController::class);
 
 });
 Route::redirect('/', '/home');
