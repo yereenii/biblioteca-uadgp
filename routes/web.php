@@ -14,6 +14,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InvestigadoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaginaPrincipalController;
 
 
 
@@ -35,4 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
 
 });
-Route::redirect('/', '/home');
+Route::redirect('/', '/index');
+
+// Direcciones de página principal "Sin autenticación"
+Route::get('index', [PaginaPrincipalController::class, 'index']);
