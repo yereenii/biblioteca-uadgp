@@ -9,7 +9,6 @@ class PaginaPrincipalController extends Controller
 {
     public function index(): View
     {
-        $variable = 'Hello world!';
-        return view('paginaPrincipal.index', compact('variable'));
+        return view('home-no-auth');
     }
 }
