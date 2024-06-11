@@ -22,9 +22,16 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="tipo_documento_id" class="form-label">{{ __('Tipo Documento Id') }}</label>
-            <input type="text" name="tipo_documento_id" class="form-control @error('tipo_documento_id') is-invalid @enderror" value="{{ old('tipo_documento_id', $documento?->tipo_documento_id) }}" id="tipo_documento_id" placeholder="Tipo Documento Id">
-            {!! $errors->first('tipo_documento_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="tipo_documento" class="form-label">{{ __('Tipo de Documento') }}</label>
+            <select name="tipo_documento" class="form-control @error('tipo_documento') is-invalid @enderror" id="tipo_documento">
+                <option value="">Selecciona un tipo de documento</option>
+                @foreach ($tiposDocumentos as $tiposDocumento)
+                    <option value="{{ $tiposDocumento->id }}" {{ old('tipo_documento', $documento->tipo_documento ?? '') == $tiposDocumento->id ? 'selected' : '' }}>
+                        {{ $tiposDocumento->descripcion }}
+                    </option>
+                @endforeach
+            </select>
+            {!! $errors->first('tipo_documento', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="fecha_publicacion" class="form-label">{{ __('Fecha Publicacion') }}</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documento;
+use App\Models\TiposDocumento;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\DocumentoRequest;
@@ -27,9 +28,10 @@ class DocumentoController extends Controller
      */
     public function create(): View
     {
+        $tiposDocumentos = TiposDocumento::all();
         $documento = new Documento();
 
-        return view('documento.create', compact('documento'));
+        return view('documento.create', compact('documento', 'tiposDocumentos'));
     }
 
     /**
@@ -58,9 +60,10 @@ class DocumentoController extends Controller
      */
     public function edit($id): View
     {
+        $tiposDocumentos = TiposDocumento::all();
         $documento = Documento::find($id);
 
-        return view('documento.edit', compact('documento'));
+        return view('documento.edit', compact('documento', 'tiposDocumentos'));
     }
 
     /**
