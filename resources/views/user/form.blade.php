@@ -130,7 +130,7 @@
                             <label for="procedencia" class="form-label">{{ __('Procedencia') }}</label>
                             <span style="color:red">*</span>
                             <select name="procedencia" id="procedencia" class="form-control" required>
-                                <option value="">Seleciona Opción</option>
+                                <option value="">Selecciona Opción</option>
                                 <option value="0">Interno</option>
                                 <option value="1">Externo</option>
                             </select>
