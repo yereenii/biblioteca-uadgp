@@ -24,9 +24,7 @@ class UserRequest extends FormRequest
         return [
 			'name' => 'required|string',
 			'apellido_paterno' => 'required|string',
-			'apellido_materno' => 'string',
 			'email' => 'required|string',
-			'rol_usuario' => 'required',
         ];
     }
 }

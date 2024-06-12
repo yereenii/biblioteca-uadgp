@@ -45,7 +45,7 @@
             <div class="col-6 form-group">
                 <label for="password" class="form-label">Contraseña</label>
                 <span style="color:red">*</span>
-                <input type="password" class="form-control" placeholder="Ingrese su contraseña" required>
+                <input type="text" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" required>
                 {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             </div>
         </div>
@@ -113,9 +113,14 @@
                         <div class="col-6 form-group mb-2 mb20">
                             <label for="materia_impartida_id" class="form-label">{{ __('Materia Impartida') }}</label>
                             <span style="color:red">*</span>
-                            <input type="text" name="materia_impartida_id" class="form-control @error('materia_impartida_id') is-invalid @enderror" value="" id="materia_impartida_id" placeholder="Materia Impartida" required>
+                            <select name="materia_impartida_id" id="materia_impartida_id" class="form-control" required>
+                                <option value="">Selecciona Opción</option>
+                                @foreach ($materias as $key => $item)
+                                    <option value="{{ $key }}"> {{ $item }}</option>
+                                @endforeach
+                            </select>
                             {!! $errors->first('materia_impartida_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

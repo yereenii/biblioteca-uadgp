@@ -81,4 +81,10 @@ class AlumnoController extends Controller
         return Redirect::route('alumnos.index')
             ->with('success', 'Alumno deleted successfully');
     }
+
+    public function add($datos){
+        $alumnoNew = Alumno::create($datos);
+
+        return $alumnoNew->id ?? 0;
+    }
 }

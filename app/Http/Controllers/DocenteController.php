@@ -81,4 +81,10 @@ class DocenteController extends Controller
         return Redirect::route('docentes.index')
             ->with('success', 'Docente deleted successfully');
     }
+
+    public function add($datos){
+        $docenteNew = Docente::create($datos);
+
+        return $docenteNew->id ?? 0;
+    }
 }

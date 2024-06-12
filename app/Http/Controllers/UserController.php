@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,8 +31,9 @@ class UserController extends Controller
     {
         $user = new User();
         $nivelesAcademicos = DB::table('niveles_academicos')->pluck('descripcion', 'id');
+        $materias = DB::table('materias')->pluck('descripcion', 'id');
 
-        return view('user.create', compact('user','nivelesAcademicos'));
+        return view('user.create', compact('user','nivelesAcademicos','materias'));
     }
 
     /**
@@ -39,7 +41,48 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        $request->validated();
+        // validar contraseña
+        $datos = [
+            'name' => $request->name,
+            'apellido_paterno' => $request->apellido_paterno,
+            'apellido_materno' => $request->apellido_materno,
+            'email' =>$request->email,
+            'password' =>bcrypt($request->password),
+        ];
+        // Crear registro
+        $newUser = User::create($datos);
+
+        // Guardar datos en la tablas correspondientes
+        // Asociar rol
+        $tipoUsuario = $request->tipo_usuario;
+        if ($tipoUsuario == 0) { // alumno
+            $datosAlumno = [
+                'usuario_id' => $newUser->id,
+                'matricula' => $request->matricula,
+                'semestre' => $request->semestre,
+                'nivel_academico_id' => $request->nivel_academico_id,
+            ];
+            $alumnoCont = new AlumnoController;
+            $alumnoCont->add($datosAlumno);
+            
+        }elseif ($tipoUsuario == 1) { // docente
+            $datosDocente = [
+                'usuario_id' => $newUser->id,
+                'materia_impartida_id' => $request->materia_impartida_id,
+            ];
+            $docenteCont = new DocenteController;
+            $docenteCont->add($datosDocente);
+            
+        }elseif ($tipoUsuario == 2) { // investigador
+            $datosInvestigador = [
+                'usuario_id' => $newUser->id,
+                'procedencia' => $request->procedencia,
+            ];
+            $investigadorCont = new InvestigadoreController;
+            $investigadorCont->add($datosInvestigador);
+        }
+        
 
         return Redirect::route('users.index')
             ->with('success', 'User created successfully.');

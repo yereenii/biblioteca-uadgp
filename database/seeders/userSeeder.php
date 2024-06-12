@@ -20,7 +20,6 @@ class userSeeder extends Seeder
             'apellido_paterno' => 'Arteaga',
             'apellido_materno' => 'Trejo',
             'email' => 'carlos@gmail.com',
-            'rol_usuario' => 1,
             'password' => bcrypt('Carlos1234'),
         ]);
 
@@ -28,7 +27,6 @@ class userSeeder extends Seeder
             'name' => 'Alex',
             'apellido_paterno' => 'Carrillo',
             'email' => 'alex@gmail.com',
-            'rol_usuario' => 1,
             'password' => bcrypt('Alex1234'),
         ]);
 
@@ -36,7 +34,6 @@ class userSeeder extends Seeder
             'name' => 'Yereni',
             'apellido_paterno' => 'Reyes',
             'email' => 'Yereni@gmail.com',
-            'rol_usuario' => 1,
             'password' => bcrypt('Yereni1234'),
         ]);
         

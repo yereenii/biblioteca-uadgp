@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\NivelesAcademico;
 
-class nivelesAcademicosSeeder extends Seeder
+class nivelesAcademicoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
