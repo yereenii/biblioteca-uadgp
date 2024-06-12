@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="row col-12">
-            <div class="col-6 form-group mb-2 mb20">
+            <div class="col-6 form-group mb- 2 mb20">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email', $user?->email) }}" id="email" placeholder="Correo Electrónico">
@@ -49,7 +49,7 @@
         <div class="row col-12">
             <div class="col-6 form-group mb-2 mb20">
                 <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
-                <select name="tipo_usuario" id="tipo_usuario" class="form-control">
+                <select name="tipo_usuario" id="tipo_usuario" onchange="cambioTipoDeUsuario();" class="form-control">
                     <option value="">Selecciona Opción</option>
                     <option value="0">Alumno</option>
                     <option value="1">Docente</option>
@@ -61,11 +61,19 @@
         <br>
         <div class="row col-12">
             {{-- Formulario de Alumnos --}}
-            <div class="card col-12" id="formulario_de_alumnos">
+            <div class="card col-12" id="formulario_de_alumnos" style="display: none">
                 <div class="card-header" style="font-size: 1.6rem;">
                     Alumno
                 </div>
                 <div class="card-body">
+                    <div class="row col-12">
+                        <div class="col-6 form-group mb-2 mb20">
+                            <label for="matricula" class="form-label">{{ __('Matricula') }}</label>
+                            <input type="text" name="matricula" class="form-control @error('matricula') is-invalid @enderror"
+                                value="" id="matricula" placeholder="Matricula">
+                            {!! $errors->first('matricula', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                        </div>
+                    </div>
                     <div class="row col-12">
                         <div class="col-6 form-group mb-2 mb20">
                             <label for="semestre" class="form-label">{{ __('Semestre') }}</label>
@@ -73,27 +81,50 @@
                                 value="" id="semestre" placeholder="Semestre">
                             {!! $errors->first('semestre', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                         </div>
+                        
                         <div class="col-6 form-group mb-2 mb20">
-                            <label for="matricula" class="form-label">{{ __('Matricula') }}</label>
-                            <input type="text" name="matricula" class="form-control @error('matricula') is-invalid @enderror"
-                                value="" id="matricula" placeholder="Matricula">
-                            {!! $errors->first('matricula', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-                        </div>
-                        <div class=" col-6form-group mb-2 mb20">
-                            <label for="nivel_academico_id" class="form-label">{{ __('Nivel Academico Id') }}</label>
-                            <input type="text" name="nivel_academico_id" class="form-control @error('nivel_academico_id') is-invalid @enderror" value="{{ old('nivel_academico_id', $alumno?->nivel_academico_id) }}" id="nivel_academico_id" placeholder="Nivel Academico Id">
+                            <label for="nivel_academico_id" class="form-label">{{ __('Nivel Académico') }}</label>
+                            <select name="nivel_academico_id" id="nivel_academico_id" class="form-control">
+                                <option value="">Selecciona Opción</option>
+                            </select>
                             {!! $errors->first('nivel_academico_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                         </div>
                     </div>
                 </div>
             </div>
             {{-- Formulario de Docentes --}}
-            <div id="formulario_de_docentes">
-
+            <div class="card col-12" id="formulario_de_docentes" style="display: none">
+                <div class="card-header" style="font-size: 1.6rem;">
+                    Docente
+                </div>
+                <div class="card-body">
+                    <div class="row col-12">
+                        <div class="col-6 form-group mb-2 mb20">
+                            <label for="materia_impartida_id" class="form-label">{{ __('Materia Impartida') }}</label>
+                            <input type="text" name="materia_impartida_id" class="form-control @error('materia_impartida_id') is-invalid @enderror" value="" id="materia_impartida_id" placeholder="Materia Impartida">
+                            {!! $errors->first('materia_impartida_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                        </div>
+                    </div>
+                </div>
             </div>
             {{-- Formulario de Investigadores --}}
-            <div id="formulario_de_Investigadores">
-
+            <div class="card col-12" id="formulario_de_investigador" style="display: none">
+                <div class="card-header" style="font-size: 1.6rem;">
+                    Investigador
+                </div>
+                <div class="card-body">
+                    <div class="row col-12">
+                        <div class="col-6 form-group mb-2 mb20">
+                            <label for="procedencia" class="form-label">{{ __('Procedencia') }}</label>
+                            <select name="procedencia" id="procedencia" class="form-control">
+                                <option value="">Seleciona Opción</option>
+                                <option value="0">Interno</option>
+                                <option value="1">Externo</option>
+                            </select>
+                            {!! $errors->first('procedencia', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +134,5 @@
 </div>
 
 @section('js')
-    <script>
-        // alert('hey');
-    </script>
+    <script src="{{ asset('js/user/form.js') }}"></script>
 @endsection
