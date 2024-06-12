@@ -38,7 +38,7 @@
             <div class="col-6 form-group mb- 2 mb20">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <span style="color:red">*</span>
-                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email', $user?->email) }}" id="email" placeholder="Correo Electrónico" required>
                 {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             </div>
@@ -84,8 +84,8 @@
                         <div class="col-6 form-group mb-2 mb20">
                             <label for="semestre" class="form-label">{{ __('Semestre') }}</label>
                             <span style="color:red">*</span>
-                            <input type="text" name="semestre" class="form-control @error('semestre') is-invalid @enderror"
-                                value="" id="semestre" placeholder="Semestre" required>
+                            <input type="number" name="semestre" class="form-control @error('semestre') is-invalid @enderror"
+                                value="" id="semestre" min="0" placeholder="Semestre" required>
                             {!! $errors->first('semestre', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                         </div>
                         
@@ -94,6 +94,9 @@
                             <span style="color:red">*</span>
                             <select name="nivel_academico_id" id="nivel_academico_id" class="form-control" required>
                                 <option value="">Selecciona Opción</option>
+                                @foreach ($nivelesAcademicos as $key => $item)
+                                    <option value="{{ $key }}"> {{ $item }}</option>
+                                @endforeach
                             </select>
                             {!! $errors->first('nivel_academico_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                         </div>

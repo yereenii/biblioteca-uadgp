@@ -22,6 +22,8 @@ function ocultarOtrasOpciones(opcion){
     }
     if(opcion != 'formulario_de_alumnos'){
         document.getElementById('formulario_de_alumnos').style.display = 'none';
+        document.getElementById('nivel_academico_id').selectedIndex = '';
+
     }
     if(opcion != 'formulario_de_docentes'){
         document.getElementById('formulario_de_docentes').style.display = 'none';

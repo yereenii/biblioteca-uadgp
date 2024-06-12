@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,8 +29,9 @@ class UserController extends Controller
     public function create(): View
     {
         $user = new User();
+        $nivelesAcademicos = DB::table('niveles_academicos')->pluck('descripcion', 'id');
 
-        return view('user.create', compact('user'));
+        return view('user.create', compact('user','nivelesAcademicos'));
     }
 
     /**
