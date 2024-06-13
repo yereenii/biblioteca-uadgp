@@ -45,7 +45,7 @@
             <div class="col-6 form-group">
                 <label for="password" class="form-label">Contraseña</label>
                 <span style="color:red">*</span>
-                <input type="text" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" required>
+                <input type="text" name="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" required>
                 {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             </div>
         </div>
