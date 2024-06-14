@@ -2,9 +2,22 @@
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
-            <label for="autor_id" class="form-label">{{ __('Autor Id') }}</label>
-            <input type="text" name="autor_id" class="form-control @error('autor_id') is-invalid @enderror" value="{{ old('autor_id', $documento?->autor_id) }}" id="autor_id" placeholder="Autor Id">
-            {!! $errors->first('autor_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="autor" class="form-label">{{ __('Autor') }}</label>
+            @if ($autores->isEmpty())
+                <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor" disabled>
+                    <option value="">Aún no hay autores registrados</option>
+                </select>
+            @else
+                <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor">
+                    <option value="">Selecciona un autor</option>
+                    @foreach ($autores as $autor)
+                        <option value="{{ $autor->id }}" {{ old('autor', $documento->autor ?? '') == $autor->id ? 'selected' : '' }}>
+                            {{ $autor->descripcion }}
+                        </option>
+                    @endforeach
+                </select>
+            @endif
+            {!! $errors->first('autor', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="titulo" class="form-label">{{ __('Titulo') }}</label>
