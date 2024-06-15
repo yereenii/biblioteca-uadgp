@@ -16,7 +16,7 @@ class userSeeder extends Seeder
     {
         
         User::create([
-            'name' => 'Carlos Arteaga',
+            'name' => 'Carlos',
             'apellido_paterno' => 'Arteaga',
             'apellido_materno' => 'Trejo',
             'email' => 'carlos@gmail.com',
@@ -31,7 +31,7 @@ class userSeeder extends Seeder
         ])->assignRole('Admin');
 
         User::create([
-            'name' => 'Yereni',
+            'name' => 'Yerení',
             'apellido_paterno' => 'Reyes',
             'email' => 'Yereni@gmail.com',
             'password' => bcrypt('Yereni1234'),
