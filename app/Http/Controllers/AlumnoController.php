@@ -87,4 +87,10 @@ class AlumnoController extends Controller
 
         return $alumnoNew->id ?? 0;
     }
+
+    public function matriculaExist($matricula){
+        $existMatricula = Alumno::where('matricula', $matricula)->exists();
+        
+        return $existMatricula;
+    }
 }

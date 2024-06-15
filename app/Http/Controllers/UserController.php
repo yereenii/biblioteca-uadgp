@@ -41,7 +41,13 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
+        // Valida que el correo sea único
         $request->validated();
+        // Valida que la matricula sea única
+        $alumnoCont = new AlumnoController;
+        if ($alumnoCont->matriculaExist($request->matricula)) {
+            return redirect()->back()->withInput()->withErrors(['matricula' => 'La matrícula ya está en uso.']);
+        }
         // validar contraseña
         $datos = [
             'name' => $request->name,
@@ -63,7 +69,6 @@ class UserController extends Controller
                 'semestre' => $request->semestre,
                 'nivel_academico_id' => $request->nivel_academico_id,
             ];
-            $alumnoCont = new AlumnoController;
             $alumnoCont->add($datosAlumno);
             
         }elseif ($tipoUsuario == 1) { // docente
