@@ -21,21 +21,21 @@ class userSeeder extends Seeder
             'apellido_materno' => 'Trejo',
             'email' => 'carlos@gmail.com',
             'password' => bcrypt('Carlos1234'),
-        ]);
+        ])->assignRole('Admin');
 
         User::create([
             'name' => 'Alex',
             'apellido_paterno' => 'Carrillo',
             'email' => 'alex@gmail.com',
             'password' => bcrypt('Alex1234'),
-        ]);
+        ])->assignRole('Admin');
 
         User::create([
             'name' => 'Yereni',
             'apellido_paterno' => 'Reyes',
             'email' => 'Yereni@gmail.com',
             'password' => bcrypt('Yereni1234'),
-        ]);
+        ])->assignRole('Admin');
         
     }
 }

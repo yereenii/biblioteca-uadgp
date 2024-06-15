@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -70,7 +71,8 @@ class UserController extends Controller
                 'nivel_academico_id' => $request->nivel_academico_id,
             ];
             $alumnoCont->add($datosAlumno);
-            
+            $newUser->assignRole('Alumnos'); // se asigna rol
+
         }elseif ($tipoUsuario == 1) { // docente
             $datosDocente = [
                 'usuario_id' => $newUser->id,
@@ -78,6 +80,7 @@ class UserController extends Controller
             ];
             $docenteCont = new DocenteController;
             $docenteCont->add($datosDocente);
+            $newUser->assignRole('Docentes'); // se asigna rol
             
         }elseif ($tipoUsuario == 2) { // investigador
             $datosInvestigador = [
@@ -86,6 +89,8 @@ class UserController extends Controller
             ];
             $investigadorCont = new InvestigadoreController;
             $investigadorCont->add($datosInvestigador);
+            $newUser->assignRole('Investigadores'); // se asigna rol
+
         }
         
 
