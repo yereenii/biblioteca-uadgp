@@ -3,21 +3,24 @@
         
         <div class="form-group mb-2 mb20">
             <label for="autor" class="form-label">{{ __('Autor') }}</label>
-            @if ($autores->isEmpty())
-                <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor" disabled>
-                    <option value="">Aún no hay autores registrados</option>
-                </select>
-            @else
-                <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor">
-                    <option value="">Selecciona un autor para este documento</option>
-                    @foreach ($autores as $autor)
-                        <option value="{{ $autor->id }}" {{ old('autor', $documento->autor ?? '') == $autor->id ? 'selected' : '' }}>
-                            {{ $autor->descripcion }}
-                        </option>
-                    @endforeach
-                </select>
-            @endif
-            {!! $errors->first('autor', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <div class="d-flex">
+                @if ($autores->isEmpty())
+                    <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor" disabled>
+                        <option value="">Aún no hay autores registrados</option>
+                    </select>
+                @else
+                    <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor">
+                        <option value="">Selecciona un autor para este documento</option>
+                        @foreach ($autores as $autor)
+                            <option value="{{ $autor->id }}" {{ old('autor', $documento->autor ?? '') == $autor->id ? 'selected' : '' }}>
+                                {{ $autor->descripcion }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
+                {!! $errors->first('autor', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                <a href="{{ url('/autores/create') }}" target="_blank" class="btn btn-primary btn-block ml-2" style="max-width: 10em">{{ __('Añadir Autor') }}</a>
+            </div>
         </div>
         <div class="form-group mb-2 mb20">
             <label for="titulo" class="form-label">{{ __('Título') }}</label>
