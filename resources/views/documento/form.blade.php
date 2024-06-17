@@ -67,6 +67,6 @@
 
     </div>
     <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Regitrar Documento') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Registrar Documento') }}</button>
     </div>
 </div>
