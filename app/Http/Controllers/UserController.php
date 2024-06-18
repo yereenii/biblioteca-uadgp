@@ -144,9 +144,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, User $user): RedirectResponse
+    public function update(Request $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());
+        dd($request->all());
+        // falta actualizar datos de usuario
+        $user->update();
+        // falta ubicar y actualizar los datos del tipo de usaurio
+
+        // falta revisar el uso de la contraseña
+        
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');

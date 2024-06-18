@@ -1,3 +1,11 @@
+<style>
+    /* Estilo para evitar la interacción */
+    .readonly-select {
+        pointer-events: none;
+        background-color: #f0f0f0; /* Opcional: Cambia el fondo para parecer desactivado */
+        color: #999; /* Opcional: Cambia el color del texto */
+    }
+</style>
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         <div class="row col-12">
@@ -45,7 +53,7 @@
             <div class="col-6 form-group">
                 <label for="password" class="form-label">Contraseña</label>
                 <span style="color:red">*</span>
-                <input type="text" name="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" required>
+                <input type="text" name="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" {{ $user->name ?'':'required' }} >
                 {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             </div>
         </div>
@@ -54,7 +62,7 @@
             <div class="col-6 form-group mb-2 mb20">
                 <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
                 <span style="color:red">*</span>
-                <select name="tipo_usuario" id="tipo_usuario" onchange="cambioTipoDeUsuario();" class="form-control" required>
+                <select name="tipo_usuario" id="tipo_usuario" onchange="cambioTipoDeUsuario();" class="form-control  {{$user->name ? 'readonly-select' : '' }}" required  >
                     <option value="">Selecciona Opción</option>
                     <option value="0">Alumno</option>
                     <option value="1">Docente</option>
