@@ -53,3 +53,39 @@ function cambiarRequired(esRequerido, ids) {
         document.getElementById(element).required = esRequerido;
     });
 }
+
+// Se carga al ejecutar
+$(document).ready(function(){
+    cargarDatosAlEditar();
+});
+
+function cargarDatosAlEditar(){
+    if(datosDeTipoDeUsuario != '' && rolDeUsuario != '' ){
+        if (rolDeUsuario == 'alumno') {
+            // selecionamos y mostramos card
+            document.getElementById('tipo_usuario').value  = 0;
+            cambioTipoDeUsuario();
+            // Cargamos los datos
+            document.getElementById('matricula').value = datosDeTipoDeUsuario['matricula'];
+            document.getElementById('semestre').value = datosDeTipoDeUsuario['semestre'];
+            document.getElementById('nivel_academico_id').value  = datosDeTipoDeUsuario['nivel_academico_id'];
+            
+            
+        } else if(rolDeUsuario == 'docente') {
+            // selecionamos y mostramos card
+            document.getElementById('tipo_usuario').value  = 1;
+            cambioTipoDeUsuario();
+            // Cargamos los datos
+            document.getElementById('materia_impartida_id').value  = datosDeTipoDeUsuario['materia_impartida_id'];
+            
+            
+        }else if (rolDeUsuario == 'investigador') {
+            // selecionamos y mostramos card
+            document.getElementById('tipo_usuario').value  = 2;
+            cambioTipoDeUsuario();
+            // Cargamos los datos
+            document.getElementById('procedencia').value  = datosDeTipoDeUsuario['procedencia'];
+            
+        }
+    }
+}

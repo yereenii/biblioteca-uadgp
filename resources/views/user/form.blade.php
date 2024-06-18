@@ -152,5 +152,9 @@
 </div>
 
 @section('js')
+    <script>
+        var datosDeTipoDeUsuario = {!! json_encode($datosDeTipoDeUsuario ?? '') !!};
+        var rolDeUsuario = {!! json_encode($rolDeUsuario ?? '') !!};
+    </script>
     <script src="{{ asset('js/user/form.js') }}"></script>
 @endsection

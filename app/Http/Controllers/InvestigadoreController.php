@@ -87,4 +87,10 @@ class InvestigadoreController extends Controller
 
         return $investigadorNew->id ?? 0;
     }
+
+    public function findByUsuarioId($usuario_id){
+        $investigador = Investigadore::where('usuario_id', $usuario_id)->first();
+
+        return $investigador;
+    }
 }

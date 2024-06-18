@@ -114,8 +114,31 @@ class UserController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
+        $nivelesAcademicos = DB::table('niveles_academicos')->pluck('descripcion', 'id');
+        $materias = DB::table('materias')->pluck('descripcion', 'id');
+        // falta abrir cada caso
+        $datosDeTipoDeUsuario = [];
+        $rolDeUsuario = '';
+        if ($user->hasRole('Alumnos')) {
+            $alumno = new AlumnoController;
+            $datosDeTipoDeUsuario = $alumno->findByUsuarioId($user->id);
+            $rolDeUsuario = 'alumno';
 
-        return view('user.edit', compact('user'));
+        }else if ($user->hasRole('Docentes')) {
+            $docente = new DocenteController;
+            $datosDeTipoDeUsuario = $docente->findByUsuarioId($user->id);
+            $rolDeUsuario = 'docente';
+            
+        }else if($user->hasRole('Investigadores')){
+            $investigador = new InvestigadoreController;
+            $datosDeTipoDeUsuario = $investigador->findByUsuarioId($user->id);
+            $rolDeUsuario = 'investigador';
+
+        }
+
+
+
+        return view('user.edit', compact('user','nivelesAcademicos','materias','datosDeTipoDeUsuario','rolDeUsuario'));
     }
 
     /**

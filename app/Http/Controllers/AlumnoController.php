@@ -93,4 +93,10 @@ class AlumnoController extends Controller
         
         return $existMatricula;
     }
+
+    public function findByUsuarioId($usuario_id){
+        $alumno = Alumno::where('usuario_id', $usuario_id)->first();
+
+        return $alumno;
+    }
 }

@@ -87,4 +87,10 @@ class DocenteController extends Controller
 
         return $docenteNew->id ?? 0;
     }
+
+    public function findByUsuarioId($usuario_id){
+        $docente = Docente::where('usuario_id', $usuario_id)->first();
+
+        return $docente;
+    }
 }
