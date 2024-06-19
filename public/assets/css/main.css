@@ -393,8 +393,8 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
-  background-color: color-mix(in srgb, var(--default-color), transparent 97%);
+  color: #C29118;
+  background-color: #222222;
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
@@ -418,7 +418,7 @@ h6 {
   font-weight: 700;
   letter-spacing: 1px;
   font-family: var(--heading-font);
-  color: var(--heading-color);
+  color: #ffffff;
 }
 
 .footer .footer-about p {
@@ -435,13 +435,13 @@ h6 {
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  color: #ffffff;
   margin-right: 10px;
   transition: 0.3s;
 }
 
 .footer .social-links a:hover {
-  color: var(--accent-color);
+  color: #C29118;
   border-color: var(--accent-color);
 }
 
@@ -479,13 +479,13 @@ h6 {
 }
 
 .footer .footer-links ul a {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  color: #C29118;
   display: inline-block;
   line-height: 1;
 }
 
 .footer .footer-links ul a:hover {
-  color: var(--accent-color);
+  color: #ffffff;
 }
 
 .footer .footer-contact p {
