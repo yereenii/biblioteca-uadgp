@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(nivelesAcademicoSeeder::class);
         $this->call(materiaSeeder::class);
         $this->call(userSeeder::class);
+        $this->call(TiposDocumentosSeeder::class);
 
     }
 }
