@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -28,8 +31,10 @@ class UserController extends Controller
     public function create(): View
     {
         $user = new User();
+        $nivelesAcademicos = DB::table('niveles_academicos')->pluck('descripcion', 'id');
+        $materias = DB::table('materias')->pluck('descripcion', 'id');
 
-        return view('user.create', compact('user'));
+        return view('user.create', compact('user','nivelesAcademicos','materias'));
     }
 
     /**
@@ -37,7 +42,57 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        // Valida que el correo sea único
+        $request->validated();
+        // Valida que la matricula sea única
+        $alumnoCont = new AlumnoController;
+        if ($alumnoCont->matriculaExist($request->matricula)) {
+            return redirect()->back()->withInput()->withErrors(['matricula' => 'La matrícula ya está en uso.']);
+        }
+        // validar contraseña
+        $datos = [
+            'name' => $request->name,
+            'apellido_paterno' => $request->apellido_paterno,
+            'apellido_materno' => $request->apellido_materno,
+            'email' =>$request->email,
+            'password' =>bcrypt($request->password),
+        ];
+        // Crear registro
+        $newUser = User::create($datos);
+
+        // Guardar datos en la tablas correspondientes
+        // Asociar rol
+        $tipoUsuario = $request->tipo_usuario;
+        if ($tipoUsuario == 0) { // alumno
+            $datosAlumno = [
+                'usuario_id' => $newUser->id,
+                'matricula' => $request->matricula,
+                'semestre' => $request->semestre,
+                'nivel_academico_id' => $request->nivel_academico_id,
+            ];
+            $alumnoCont->add($datosAlumno);
+            $newUser->assignRole('Alumnos'); // se asigna rol
+
+        }elseif ($tipoUsuario == 1) { // docente
+            $datosDocente = [
+                'usuario_id' => $newUser->id,
+                'materia_impartida_id' => $request->materia_impartida_id,
+            ];
+            $docenteCont = new DocenteController;
+            $docenteCont->add($datosDocente);
+            $newUser->assignRole('Docentes'); // se asigna rol
+            
+        }elseif ($tipoUsuario == 2) { // investigador
+            $datosInvestigador = [
+                'usuario_id' => $newUser->id,
+                'procedencia' => $request->procedencia,
+            ];
+            $investigadorCont = new InvestigadoreController;
+            $investigadorCont->add($datosInvestigador);
+            $newUser->assignRole('Investigadores'); // se asigna rol
+
+        }
+        
 
         return Redirect::route('users.index')
             ->with('success', 'User created successfully.');
@@ -59,16 +114,45 @@ class UserController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
+        $nivelesAcademicos = DB::table('niveles_academicos')->pluck('descripcion', 'id');
+        $materias = DB::table('materias')->pluck('descripcion', 'id');
+        // falta abrir cada caso
+        $datosDeTipoDeUsuario = [];
+        $rolDeUsuario = '';
+        if ($user->hasRole('Alumnos')) {
+            $alumno = new AlumnoController;
+            $datosDeTipoDeUsuario = $alumno->findByUsuarioId($user->id);
+            $rolDeUsuario = 'alumno';
 
-        return view('user.edit', compact('user'));
+        }else if ($user->hasRole('Docentes')) {
+            $docente = new DocenteController;
+            $datosDeTipoDeUsuario = $docente->findByUsuarioId($user->id);
+            $rolDeUsuario = 'docente';
+            
+        }else if($user->hasRole('Investigadores')){
+            $investigador = new InvestigadoreController;
+            $datosDeTipoDeUsuario = $investigador->findByUsuarioId($user->id);
+            $rolDeUsuario = 'investigador';
+
+        }
+
+
+
+        return view('user.edit', compact('user','nivelesAcademicos','materias','datosDeTipoDeUsuario','rolDeUsuario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, User $user): RedirectResponse
+    public function update(Request $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());
+        dd($request->all());
+        // falta actualizar datos de usuario
+        $user->update();
+        // falta ubicar y actualizar los datos del tipo de usaurio
+
+        // falta revisar el uso de la contraseña
+        
 
         return Redirect::route('users.index')
             ->with('success', 'User updated successfully');

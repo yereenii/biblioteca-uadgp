@@ -323,13 +323,7 @@ return [
             'label_color' => 'success',
             // 'can'  => 'usuario-index',
             'submenu' => [
-                [
-                    'text'        => 'Agregar',
-                    'url'         => 'autores/create',
-                    'icon'        => 'fas fa-plus',
-                    'label_color' => 'success',
-                    // 'can'  => 'usuario-create',
-                ],
+
                 [
                     'text'        => 'Ver',
                     'url'         => 'autores',
@@ -573,7 +567,7 @@ return [
         [
             'text'        => 'Usuarios',
             'url'         => '',
-            'icon'        => 'far fa-file',
+            'icon'        => 'fas fa-user',
             'label_color' => 'success',
             // 'can'  => 'usuario-index',
             'submenu' => [

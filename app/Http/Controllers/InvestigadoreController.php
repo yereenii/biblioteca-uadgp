@@ -81,4 +81,16 @@ class InvestigadoreController extends Controller
         return Redirect::route('investigadores.index')
             ->with('success', 'Investigadore deleted successfully');
     }
+
+    public function add($datos){
+        $investigadorNew = Investigadore::create($datos);
+
+        return $investigadorNew->id ?? 0;
+    }
+
+    public function findByUsuarioId($usuario_id){
+        $investigador = Investigadore::where('usuario_id', $usuario_id)->first();
+
+        return $investigador;
+    }
 }
