@@ -30,38 +30,42 @@
                     @endif
 
                     <div class="card-body bg-white">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-									<th >Descripcion</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tiposDocumentos as $tiposDocumento)
+                        @if ($tiposDocumentos -> isEmpty())
+                            <p style="text-align: center; vertical-align: middle">{{__('No hay tipos de documento para mostrar.') }}</p>
+                        @else
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead class="thead">
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <th>No</th>
                                             
-										<td >{{ $tiposDocumento->descripcion }}</td>
+                                        <th >Descripcion</th>
 
-                                            <td>
-                                                <form action="{{ route('tipos-documentos.destroy', $tiposDocumento->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('tipos-documentos.show', $tiposDocumento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('tipos-documentos.edit', $tiposDocumento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
+                                            <th></th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($tiposDocumentos as $tiposDocumento)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                
+                                            <td >{{ $tiposDocumento->descripcion }}</td>
+
+                                                <td>
+                                                    <form action="{{ route('tipos-documentos.destroy', $tiposDocumento->id) }}" method="POST">
+                                                        <a class="btn btn-sm btn-primary " href="{{ route('tipos-documentos.show', $tiposDocumento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                        <a class="btn btn-sm btn-success" href="{{ route('tipos-documentos.edit', $tiposDocumento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 {!! $tiposDocumentos->withQueryString()->links() !!}

@@ -30,52 +30,56 @@
                     @endif
 
                     <div class="card-body bg-white">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-									<th >Autor Id</th>
-									<th >Titulo</th>
-									<th >Editorial</th>
-									<th >Descripcion</th>
-									<th >Tipo Documento Id</th>
-									<th >Fecha Publicacion</th>
-									<th >Archivo Documento</th>
-									<th >Portada Documento</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($documentos as $documento)
+                        @if ($documentos->isEmpty())
+                            <p style="text-align: center; vertical-align: middle">{{__('No hay documentos para mostrar.') }}</p>
+                        @else
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead class="thead">
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <th>No</th>
                                             
-										<td >{{ $documento->autor_id }}</td>
-										<td >{{ $documento->titulo }}</td>
-										<td >{{ $documento->editorial }}</td>
-										<td >{{ $documento->descripcion }}</td>
-										<td >{{ $documento->tipo_documento_id }}</td>
-										<td >{{ $documento->fecha_publicacion }}</td>
-										<td >{{ $documento->archivo_documento }}</td>
-										<td >{{ $documento->portada_documento }}</td>
+                                        <th >Autor Id</th>
+                                        <th >Titulo</th>
+                                        <th >Editorial</th>
+                                        <th >Descripcion</th>
+                                        <th >Tipo Documento Id</th>
+                                        <th >Fecha Publicacion</th>
+                                        <th >Archivo Documento</th>
+                                        <th >Portada Documento</th>
 
-                                            <td>
-                                                <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('documentos.show', $documento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('documentos.edit', $documento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
+                                            <th></th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($documentos as $documento)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                
+                                            <td >{{ $documento->autor_id }}</td>
+                                            <td >{{ $documento->titulo }}</td>
+                                            <td >{{ $documento->editorial }}</td>
+                                            <td >{{ $documento->descripcion }}</td>
+                                            <td >{{ $documento->tipo_documento_id }}</td>
+                                            <td >{{ $documento->fecha_publicacion }}</td>
+                                            <td >{{ $documento->archivo_documento }}</td>
+                                            <td >{{ $documento->portada_documento }}</td>
+
+                                                <td>
+                                                    <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST">
+                                                        <a class="btn btn-sm btn-primary " href="{{ route('documentos.show', $documento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                        <a class="btn btn-sm btn-success" href="{{ route('documentos.edit', $documento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 {!! $documentos->withQueryString()->links() !!}
