@@ -93,4 +93,10 @@ class InvestigadoreController extends Controller
 
         return $investigador;
     }
+
+    public function updateByUserId($usuario_id, $datos){
+        $alumno = Investigadore::where('usuario_id', $usuario_id)->first();
+        $alumno->update($datos);
+        return $alumno;
+    }
 }

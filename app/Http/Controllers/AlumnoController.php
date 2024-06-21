@@ -99,4 +99,10 @@ class AlumnoController extends Controller
 
         return $alumno;
     }
+
+    public function updateByUserId($usuario_id, $datos){
+        $alumno = Alumno::where('usuario_id', $usuario_id)->first();
+        $alumno->update($datos);
+        return $alumno;
+    }
 }

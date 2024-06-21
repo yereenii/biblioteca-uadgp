@@ -146,12 +146,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        dd($request->all());
-        // falta actualizar datos de usuario
-        $user->update();
-        // falta ubicar y actualizar los datos del tipo de usaurio
+        // Actualizamos datos del usuario menos inputs de otros roles
+        $user->update($request->except(['matricula','semestre','nivel_academico_id','materia_impartida_id','procedencia']));
+        
+        // actualizamos los datos del rol requerido
+        $tipoUsuario = $request->tipo_usuario;
+        if ($tipoUsuario == 0) { // alumno
+            $datosAlumno = [
+                'matricula' => $request->matricula,
+                'semestre' => $request->semestre,
+                'nivel_academico_id' => $request->nivel_academico_id,
+            ];
+            $alumnoCont = new AlumnoController;
+            $alumnoCont->updateByUserId($user->id, $datosAlumno);
 
-        // falta revisar el uso de la contraseña
+        }elseif ($tipoUsuario == 1) { // docente
+            $datosDocente = [
+                'materia_impartida_id' => $request->materia_impartida_id,
+            ];
+            $docenteCont = new DocenteController;
+            $docenteCont->updateByUserId($user->id, $datosDocente);
+            
+        }elseif ($tipoUsuario == 2) { // investigador
+            $datosInvestigador = [
+                'procedencia' => $request->procedencia,
+            ];
+            $investigadorCont = new InvestigadoreController;
+            $investigadorCont->updateByUserId($user->id, $datosInvestigador);
+
+        }
         
 
         return Redirect::route('users.index')
