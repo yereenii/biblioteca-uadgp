@@ -89,3 +89,15 @@ function cargarDatosAlEditar(){
         }
     }
 }
+
+function switchContrasena() {
+    var switchElement = document.getElementById('switch_contrasena');
+    if (switchElement.checked) {
+        document.getElementById('input_porcentaje').style.display = 'inline';
+        document.getElementById('password').disabled = false;
+    } else {
+        document.getElementById('input_porcentaje').style.display = 'none';
+        document.getElementById('password').disabled = true;
+
+    }
+}

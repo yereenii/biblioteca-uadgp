@@ -50,12 +50,27 @@
                     value="{{ old('email', $user?->email) }}" id="email" placeholder="Correo Electrónico" required>
                 {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             </div>
-            <div class="col-6 form-group">
-                <label for="password" class="form-label">Contraseña</label>
-                <span style="color:red">*</span>
-                <input type="text" name="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" {{ $user->name ?'':'required' }} >
-                {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-            </div>
+            @if ($user->name)
+                <div class="col-6">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="switch_contrasena" onchange="switchContrasena()">
+                        <label class="custom-control-label" for="switch_contrasena">Actualizar contraseña</label>
+                    </div>
+                    <div id="input_porcentaje"  style="display: none">
+                        <div class="pt-2 form-group">
+                            <input type="text" name="password" id="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" {{ $user->name ?'':'required' }} disabled>
+                            {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="col-6 form-group">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <span style="color:red">*</span>
+                    <input type="text" name="password" class="form-control" style="-webkit-text-security: disc; text-security: disc;" placeholder="Ingrese su contraseña" {{ $user->name ?'':'required' }} >
+                    {!! $errors->first('email', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                </div>
+            @endif
         </div>
         {{-- Select con con tipo de usuario (alumnos, docentes e investigadores) --}}
         <div class="row col-12">
