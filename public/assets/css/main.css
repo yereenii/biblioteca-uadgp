@@ -104,7 +104,8 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+  width: 110px; /* Ajusta este valor según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
   margin-right: 8px;
 }
 
