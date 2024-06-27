@@ -95,7 +95,7 @@
             <span class="sitename">UADGP</span>
           </a>
           <div class="footer-contact pt-3">
-            <h4>Unidad Académica de Desarrollo <br> y Gestión Pública</h4>
+            <h4>Unidad Académica de <br> Desarrollo y Gestión Pública</h4>
             <h3><a href="https://www.uaz.edu.mx/" style="color: #3271f8; !important">Universidad Autónoma de Zacatecas</a></h3>
           </div>
           <div class="social-links d-flex mt-4">
