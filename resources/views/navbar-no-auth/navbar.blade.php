@@ -9,7 +9,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="img/logo2.svg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -95,10 +95,8 @@
             <span class="sitename">UADGP</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>Av. Zacatecas #30, esquina <br> 
-              Av. Hidalgo Guadalupe Zacatecas</p>
-            <p class="mt-3"><strong>Teléfono:</strong> <span>(492)7-68-24-32</span></p>
-            <p><strong>Email:</strong> <span>uadgp@uaz.edu.mx</span></p>
+            <h4>Unidad Académica de Desarrollo <br> y Gestión Pública</h4>
+            <h3><a href="https://www.uaz.edu.mx/" style="color: #3271f8; !important">Universidad Autónoma de Zacatecas</a></h3>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -108,29 +106,26 @@
           </div>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
+        <div class="col-lg-3 offset-1 col-md-3 footer-links">
           <h4>Programas Académicos</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="https://uadgp.org/licenciatura-en-desarrollo-y-gestion-publica-ldgp/">Licenciatura en Desarrollo y Gestión Pública</a></li>
+            <li><a href="https://uadgp.org/maestria-en-estudio-y-solucion-de-problemas-publicos-mespp/">Maestría en Estudio y  <br> Solución de Problemas Públicos</a></li>
+            <li><a href="https://uadgp.org/especialidad-en-prevencion-del-delito/">Especialidad en Preveención del Delito</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
+        <div class="col-lg-3 offset-1 col-md-3 footer-links">
+          <h4>Dirección y Teléfono</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <p>Av. Zacatecas #30, esquina <br> 
+              Av. Hidalgo Guadalupe Zacatecas</p>
+            <p class="mt-3"><strong>Teléfono:</strong> <span>(492)7-68-24-32</span></p>
+            <p><strong>Email:</strong> <span>uadgp@uaz.edu.mx</span></p>
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-12 footer-newsletter">
+       {{--  <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
           <form action="forms/newsletter.php" method="post" class="php-email-form">
@@ -139,7 +134,7 @@
             <div class="error-message"></div>
             <div class="sent-message">Your subscription request has been sent. Thank you!</div>
           </form>
-        </div>
+        </div> --}}
 
       </div>
     </div>
