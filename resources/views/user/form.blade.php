@@ -136,7 +136,7 @@
                         <div class="col-6 form-group mb-2 mb20">
                             <label for="materia_impartida_id" class="form-label">{{ __('Materia Impartida') }}</label>
                             <span style="color:red">*</span>
-                            <select name="materia_impartida_id" id="materia_impartida_id" class="form-control" required>
+                            <select name="materia_impartida_id" id="materia_impartida_id" class="form-control select2" required>
                                 <option value="">Selecciona Opción</option>
                                 @foreach ($materias as $key => $item)
                                     <option value="{{ $key }}"> {{ $item }}</option>
@@ -178,6 +178,7 @@
     <script>
         var datosDeTipoDeUsuario = {!! json_encode($datosDeTipoDeUsuario ?? '') !!};
         var rolDeUsuario = {!! json_encode($rolDeUsuario ?? '') !!};
+        $(".select2").select2();
     </script>
     <script src="{{ asset('js/user/form.js') }}"></script>
 @endsection
