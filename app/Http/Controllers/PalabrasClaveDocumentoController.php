@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PalabrasClaveDocumento;
+use App\Models\PalabrasClave;
+use App\Models\Documento;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PalabrasClaveDocumentoRequest;
@@ -27,9 +29,11 @@ class PalabrasClaveDocumentoController extends Controller
      */
     public function create(): View
     {
+        $palabrasClave = PalabrasClave::all();
+        $documentos = Documento::all();
         $palabrasClaveDocumento = new PalabrasClaveDocumento();
 
-        return view('palabras-clave-documento.create', compact('palabrasClaveDocumento'));
+        return view('palabras-clave-documento.create', compact('palabrasClaveDocumento', 'palabrasClave', 'documentos'));
     }
 
     /**
@@ -58,9 +62,11 @@ class PalabrasClaveDocumentoController extends Controller
      */
     public function edit($id): View
     {
+        $palabrasClave = PalabrasClave::all();
+        $documentos = Documento::all();
         $palabrasClaveDocumento = PalabrasClaveDocumento::find($id);
 
-        return view('palabras-clave-documento.edit', compact('palabrasClaveDocumento'));
+        return view('palabras-clave-documento.edit', compact('palabrasClaveDocumento','palabrasClave', 'documentos'));
     }
 
     /**

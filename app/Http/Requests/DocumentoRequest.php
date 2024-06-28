@@ -27,8 +27,8 @@ class DocumentoRequest extends FormRequest
 			'editorial' => 'string',
 			'descripcion' => 'string',
 			'tipo_documento_id' => 'required',
-			'archivo_documento' => 'string',
-			'portada_documento' => 'string',
+			'archivo_documento' => 'file',
+			'portada_documento' => 'file',
         ];
     }
 }

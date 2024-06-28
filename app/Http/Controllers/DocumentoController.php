@@ -41,7 +41,20 @@ class DocumentoController extends Controller
      */
     public function store(DocumentoRequest $request): RedirectResponse
     {
-        Documento::create($request->validated());
+        $request->validated();
+        $documento = Documento::create($request->except(['archivo_documento', 'portada_documento']));
+        if ($request->archivo_documento) {
+            $path_archivo = $request->file('archivo_documento')->store('/public/documentos');
+            $new_path_archivo = explode("public/", $path_archivo);
+            $documento->archivo_documento = "storage/".end($new_path_archivo);
+            $documento->save();
+        }
+        if ($request->portada_documento) {
+            $path_portada = $request->file('portada_documento')->store('/public/portadas');
+            $new_path_portada = explode("public/", $path_portada);
+            $documento->portada_documento = "storage/".end($new_path_portada);
+            $documento->save();
+        }
 
         return Redirect::route('documentos.index')
             ->with('success', 'Documento created successfully.');

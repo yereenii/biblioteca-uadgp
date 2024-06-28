@@ -2,9 +2,22 @@
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
-            <label for="documento_id" class="form-label">{{ __('Documento Id') }}</label>
-            <input type="text" name="documento_id" class="form-control @error('documento_id') is-invalid @enderror" value="{{ old('documento_id', $palabrasClaveDocumento?->documento_id) }}" id="documento_id" placeholder="Documento Id">
-            {!! $errors->first('documento_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="documento" class="form-label">{{ __('Documento') }}</label>
+            @if ($documentos->isEmpty())
+                <select name="documento_id" class="form-control @error('documento') is-invalid @enderror" id="documento" disabled>
+                    <option value="">Aún no hay documentos registrados</option>
+                </select>
+            @else
+                <select name="documento_id" class="form-control @error('documento') is-invalid @enderror" id="documento">
+                    <option value="">Selecciona un Documento para asignar palabras clave</option>
+                    @foreach ($documentos as $documento)
+                        <option value="{{ $documento->id }}" {{ old('documento', $palabrasClaveDocumento->documento ?? '') == $documento->id ? 'selected' : '' }}>
+                            {{ $documento->titulo }}
+                        </option>
+                    @endforeach
+                </select>    
+            @endif
+            {!! $errors->first('documento', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="palabra_clave_id" class="form-label">{{ __('Palabra Clave Id') }}</label>

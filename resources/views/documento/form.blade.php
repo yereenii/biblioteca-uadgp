@@ -5,15 +5,15 @@
             <label for="autor" class="form-label">{{ __('Autor') }}</label>
             <div class="d-flex">
                 @if ($autores->isEmpty())
-                    <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor" disabled>
+                    <select name="autor_id" class="form-control @error('autor') is-invalid @enderror" id="autor" disabled>
                         <option value="">Aún no hay autores registrados</option>
                     </select>
                 @else
-                    <select name="autor" class="form-control @error('autor') is-invalid @enderror" id="autor">
+                    <select name="autor_id" class="form-control @error('autor') is-invalid @enderror" id="autor">
                         <option value="">Selecciona un autor para este documento</option>
                         @foreach ($autores as $autor)
                             <option value="{{ $autor->id }}" {{ old('autor', $documento->autor ?? '') == $autor->id ? 'selected' : '' }}>
-                                {{ $autor->descripcion }}
+                                {{ $autor->nombre }}
                             </option>
                         @endforeach
                     </select>
@@ -39,7 +39,7 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="tipo_documento" class="form-label">{{ __('Tipo de Documento') }}</label>
-            <select name="tipo_documento" class="form-control @error('tipo_documento') is-invalid @enderror" id="tipo_documento">
+            <select name="tipo_documento_id" class="form-control @error('tipo_documento') is-invalid @enderror" id="tipo_documento">
                 <option value="">Selecciona un tipo de documento</option>
                 @foreach ($tiposDocumentos as $tiposDocumento)
                     <option value="{{ $tiposDocumento->id }}" {{ old('tipo_documento', $documento->tipo_documento ?? '') == $tiposDocumento->id ? 'selected' : '' }}>
@@ -56,12 +56,12 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="archivo_documento" class="form-label">{{ __('Archivo en PDF') }}</label>
-            <input type="text" name="archivo_documento" class="form-control @error('archivo_documento') is-invalid @enderror" value="{{ old('archivo_documento', $documento?->archivo_documento) }}" id="archivo_documento" placeholder="Archivo Documento">
+            <input type="file" accept=".pdf" name="archivo_documento" class="form-control @error('archivo_documento') is-invalid @enderror" value="{{ old('archivo_documento', $documento?->archivo_documento) }}" id="archivo_documento" placeholder="Archivo Documento">
             {!! $errors->first('archivo_documento', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="portada_documento" class="form-label">{{ __('Portada del documento') }}</label>
-            <input type="text" name="portada_documento" class="form-control @error('portada_documento') is-invalid @enderror" value="{{ old('portada_documento', $documento?->portada_documento) }}" id="portada_documento" placeholder="Portada Documento">
+            <input type="file" accept=".jpg, .jpeg, .png" name="portada_documento" class="form-control @error('portada_documento') is-invalid @enderror" value="{{ old('portada_documento', $documento?->portada_documento) }}" id="portada_documento" placeholder="Portada Documento">
             {!! $errors->first('portada_documento', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 
@@ -70,3 +70,9 @@
         <button type="submit" class="btn btn-primary">{{ __('Registrar Documento') }}</button>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $('#autor').select2();
+    </script>
+@endsection
