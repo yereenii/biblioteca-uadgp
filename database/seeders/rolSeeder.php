@@ -16,9 +16,9 @@ class rolSeeder extends Seeder
     {
         // Creamos roles
         $admin = Role::create(['name' => 'Admin']);
-        $alumnos = Role::create(['name' => 'Alumnos']);
-        $docentes = Role::create(['name' => 'Docentes']);
-        $investigadores = Role::create(['name' => 'Investigadores']);
+        $alumnos = Role::create(['name' => 'Alumno']);
+        $docentes = Role::create(['name' => 'Docente']);
+        $investigadores = Role::create(['name' => 'Investigador']);
         // Creamos permisos basicos y los sincronisamos con un rol
         Permission::create(['name' => 'admin-permission'])->syncRoles($admin);
         Permission::create(['name' => 'alumnos-permission'])->syncRoles($alumnos);

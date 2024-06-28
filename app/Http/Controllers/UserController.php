@@ -71,7 +71,7 @@ class UserController extends Controller
                 'nivel_academico_id' => $request->nivel_academico_id,
             ];
             $alumnoCont->add($datosAlumno);
-            $newUser->assignRole('Alumnos'); // se asigna rol
+            $newUser->assignRole('Alumno'); // se asigna rol
 
         }elseif ($tipoUsuario == 1) { // docente
             $datosDocente = [
@@ -80,7 +80,7 @@ class UserController extends Controller
             ];
             $docenteCont = new DocenteController;
             $docenteCont->add($datosDocente);
-            $newUser->assignRole('Docentes'); // se asigna rol
+            $newUser->assignRole('Docente'); // se asigna rol
             
         }elseif ($tipoUsuario == 2) { // investigador
             $datosInvestigador = [
@@ -89,7 +89,7 @@ class UserController extends Controller
             ];
             $investigadorCont = new InvestigadoreController;
             $investigadorCont->add($datosInvestigador);
-            $newUser->assignRole('Investigadores'); // se asigna rol
+            $newUser->assignRole('Investigador'); // se asigna rol
 
         }
         
@@ -119,17 +119,17 @@ class UserController extends Controller
         // falta abrir cada caso
         $datosDeTipoDeUsuario = [];
         $rolDeUsuario = '';
-        if ($user->hasRole('Alumnos')) {
+        if ($user->hasRole('Alumno')) {
             $alumno = new AlumnoController;
             $datosDeTipoDeUsuario = $alumno->findByUsuarioId($user->id);
             $rolDeUsuario = 'alumno';
 
-        }else if ($user->hasRole('Docentes')) {
+        }else if ($user->hasRole('Docente')) {
             $docente = new DocenteController;
             $datosDeTipoDeUsuario = $docente->findByUsuarioId($user->id);
             $rolDeUsuario = 'docente';
             
-        }else if($user->hasRole('Investigadores')){
+        }else if($user->hasRole('Investigador')){
             $investigador = new InvestigadoreController;
             $datosDeTipoDeUsuario = $investigador->findByUsuarioId($user->id);
             $rolDeUsuario = 'investigador';
