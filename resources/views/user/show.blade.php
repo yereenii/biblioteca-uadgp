@@ -35,8 +35,12 @@
                                     {{ $user->email }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Rol Usuario:</strong>
-                                    {{ $user->rol_usuario }}
+                                    <strong>Tipo de Cuenta:</strong>
+                                    @if($user->roles->isNotEmpty())
+                                        {{ $user->roles->first()->name }}
+                                    @else
+                                        Sin Rol
+                                    @endif
                                 </div>
 
                     </div>
