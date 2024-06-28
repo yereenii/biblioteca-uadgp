@@ -7,11 +7,11 @@
                         Mostrar:
                     </span>
                 </div>
-                <select wire:model="perPage" class="form-control">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
+                <select wire:model.live="perPage" class="form-control">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
                 </select>
             </div>
         </div>

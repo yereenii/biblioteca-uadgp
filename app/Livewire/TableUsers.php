@@ -9,6 +9,7 @@ use App\Models\User;
 class TableUsers extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     // variables de la páginación
     public $perPage = 10;
     public $page = 1;
@@ -38,7 +39,6 @@ class TableUsers extends Component
             $this->page = 1;
             $registros = $query->paginate($this->perPage, ['*'], 'page', $this->page);
         }
-
         return view('livewire.table-users', compact('registros'))
         ->with('i',  ($registros->currentPage() - 1) * $registros->perPage());
     }
