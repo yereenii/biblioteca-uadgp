@@ -26,12 +26,13 @@ class TableUsers extends Component
             'apellido_materno', 
             'email',
         )
-        ->when($this->search, function ($param) {
+        ->when($this->search, function ($param) { // campos en los que busca search
             $param->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $this->search . '%')
                 ->orWhere('apellido_materno', 'like', '%' . $this->search . '%')
                 ->orWhere('email', 'like', '%' . $this->search . '%');
-        });
+        })
+        ->orderBy('id', 'desc'); // mostrar el último agregado
 
         // carga de registros
         $registros = $query->paginate($this->perPage);
