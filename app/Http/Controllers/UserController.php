@@ -165,11 +165,8 @@ class UserController extends Controller
             $alumnoCont->updateByUserId($user->id, $datosAlumno);
 
         }elseif ($tipoUsuario == 1) { // docente
-            $datosDocente = [
-                'materia_impartida_id' => $request->materia_impartida_id,
-            ];
             $docenteCont = new DocenteController;
-            $docenteCont->updateByUserId($user->id, $datosDocente);
+            $docenteCont->updateByUserId($user->id, $request->materias_impartidas);
             
         }elseif ($tipoUsuario == 2) { // investigador
             $datosInvestigador = [

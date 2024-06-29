@@ -95,9 +95,22 @@ class DocenteController extends Controller
     }
 
     public function updateByUserId($usuario_id, $datos){
-        $alumno = Docente::where('usuario_id', $usuario_id)->first();
-        $alumno->update($datos);
-        return $alumno;
+        // eliminamos las materias anteriores
+        $materias = Docente::where('usuario_id', $usuario_id)->get();
+        foreach ($materias as $materia) {
+            $materia->delete();
+        }
+
+        // agregamos las nuevas materias selecionadas
+        foreach ($datos as $materias) {
+            Docente::create(
+                [
+                    'usuario_id' => $usuario_id,
+                    'materia_impartida_id' => $materias,
+                ]
+            );
+        }
+        return $usuario_id;
     }
 
 
