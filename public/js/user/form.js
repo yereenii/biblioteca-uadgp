@@ -20,7 +20,7 @@ function ocultarOtrasOpciones(opcion){
     // hacer requeridos todos los campos
     let idsDeCampos = [
         'matricula','semestre','nivel_academico_id', // alumnos
-        'materia_impartida_id', // docentes
+        'materias_impartidas', // docentes
         'procedencia' // investigador
     ];
     cambiarRequired(true, idsDeCampos);
@@ -37,7 +37,7 @@ function ocultarOtrasOpciones(opcion){
     if(opcion != 'formulario_de_docentes'){
         document.getElementById('formulario_de_docentes').style.display = 'none';
         // hacer los campos no requeridos 
-        cambiarRequired(false, ['materia_impartida_id']);
+        cambiarRequired(false, ['materias_impartidas']);
     }
     if(opcion != 'formulario_de_investigador'){
         document.getElementById('formulario_de_investigador').style.display = 'none';
@@ -76,7 +76,7 @@ function cargarDatosAlEditar(){
             document.getElementById('tipo_usuario').value  = 1;
             cambioTipoDeUsuario();
             // Cargamos los datos
-            document.getElementById('materia_impartida_id').value  = datosDeTipoDeUsuario['materia_impartida_id'];
+            document.getElementById('materias_impartidas').value  = datosDeTipoDeUsuario['materias_impartidas'];
             
             
         }else if (rolDeUsuario == 'investigador') {

@@ -133,16 +133,16 @@
                 </div>
                 <div class="card-body">
                     <div class="row col-12">
-                        <div class="col-6 form-group mb-2 mb20">
-                            <label for="materia_impartida_id" class="form-label">{{ __('Materia Impartida') }}</label>
+                        <div class="col-12 form-group mb-2 mb20">
+                            <label for="materias_impartidas" class="form-label">Selecciona las materias impartidas</label>
                             <span style="color:red">*</span>
-                            <select name="materia_impartida_id" id="materia_impartida_id" class="form-control select2" required>
-                                <option value="">Selecciona Opción</option>
+                            <br>
+                            <select name="materias_impartidas[]" id="materias_impartidas" class="col-12 form-control select2" multiple="mnultiple" required>
                                 @foreach ($materias as $key => $item)
                                     <option value="{{ $key }}"> {{ $item }}</option>
                                 @endforeach
                             </select>
-                            {!! $errors->first('materia_impartida_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+                            {!! $errors->first('materias_impartidas', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
                         </div> 
                     </div>
                 </div>

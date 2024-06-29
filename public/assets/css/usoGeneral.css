@@ -22,3 +22,18 @@
   .campo_invalido {
     border: none !important;
   }
+
+/* Diseño select2 mutiple */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #515e6c;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: aliceblue;
+}
+
+/* Asegurar que el contenedor principal tenga el ancho deseado */
+.select2-container {
+    width: 100% !important; /* El contenedor principal debe ocupar el 100% */
+}
+

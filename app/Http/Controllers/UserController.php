@@ -74,12 +74,16 @@ class UserController extends Controller
             $newUser->assignRole('Alumno'); // se asigna rol
 
         }elseif ($tipoUsuario == 1) { // docente
-            $datosDocente = [
-                'usuario_id' => $newUser->id,
-                'materia_impartida_id' => $request->materia_impartida_id,
-            ];
             $docenteCont = new DocenteController;
-            $docenteCont->add($datosDocente);
+            // Iteramos las masterias impatidas
+            foreach ($request->materias_impartidas as $materia_impartida_id) {
+                $docenteCont->add(
+                    [
+                        'usuario_id' => $newUser->id,
+                        'materia_impartida_id' => $materia_impartida_id,
+                    ]
+                );
+            }
             $newUser->assignRole('Docente'); // se asigna rol
             
         }elseif ($tipoUsuario == 2) { // investigador
