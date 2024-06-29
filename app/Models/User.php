@@ -25,6 +25,20 @@ class User extends Authenticatable
         'apellido_materno',
     ];
 
+    public function alumno()
+    {
+        return $this->hasOne(\App\Models\Alumno::class, 'usuario_id', 'id');
+    }
+    
+    public function docente()
+    {
+        return $this->hasMany(\App\Models\Docente::class, 'usuario_id', 'id');
+    }
+    
+    public function investigador()
+    {
+        return $this->hasOne(\App\Models\Investigadore::class, 'usuario_id', 'id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

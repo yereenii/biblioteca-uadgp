@@ -37,11 +37,43 @@
                                 <div class="form-group mb-2 mb20">
                                     <strong>Tipo de Cuenta:</strong>
                                     @if($user->roles->isNotEmpty())
-                                        {{ $user->roles->first()->name }}
+                                    {{ $user->roles->first()->name }}
                                     @else
-                                        Sin Rol
+                                    Sin Rol
                                     @endif
                                 </div>
+                                @if ($user->hasRole('Alumno'))
+                                    <div class="form-group mb-2 mb20">
+                                        <strong>Matricula:</strong>
+                                        {{ $user->alumno->matricula }}
+                                    </div>
+                                    <div class="form-group mb-2 mb20">
+                                        <strong>Semestre:</strong>
+                                        {{ $user->alumno->semestre }}
+                                    </div>
+                                    <div class="form-group mb-2 mb20">
+                                        <strong>Nivel Académico:</strong>
+                                        {{ $user->alumno->nivelesAcademico->descripcion }}
+                                    </div>
+                                    
+                                @elseif($user->hasRole('Docente'))
+                                    <div class="form-group mb-2 mb20">
+                                        <strong>Materias:</strong>
+                                        <ul>
+                                            @foreach ($user->docente as $item)
+                                            <li>
+                                                {{ $item->materia->descripcion }}
+                                                
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @elseif($user->hasRole('Investigador'))
+                                    <div class="form-group mb-2 mb20">
+                                        <strong>Procedencia:</strong>
+                                        {{ $user->investigador->procedencia == 0 ? 'Interno' : 'Externo' }}
+                                    </div>
+                                @endif
 
                     </div>
                 </div>
