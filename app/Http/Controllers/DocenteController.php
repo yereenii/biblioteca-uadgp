@@ -89,7 +89,7 @@ class DocenteController extends Controller
     }
 
     public function findByUsuarioId($usuario_id){
-        $docente = Docente::where('usuario_id', $usuario_id)->first();
+        $docente = Docente::where('usuario_id', $usuario_id)->get()->pluck('materia_impartida_id');
 
         return $docente;
     }
@@ -99,4 +99,6 @@ class DocenteController extends Controller
         $alumno->update($datos);
         return $alumno;
     }
+
+
 }

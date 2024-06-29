@@ -76,8 +76,7 @@ function cargarDatosAlEditar(){
             document.getElementById('tipo_usuario').value  = 1;
             cambioTipoDeUsuario();
             // Cargamos los datos
-            document.getElementById('materias_impartidas').value  = datosDeTipoDeUsuario['materias_impartidas'];
-            
+            $('#materias_impartidas').val(datosDeTipoDeUsuario).trigger('change');
             
         }else if (rolDeUsuario == 'investigador') {
             // selecionamos y mostramos card
