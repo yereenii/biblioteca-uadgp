@@ -1575,12 +1575,26 @@ section,
   position: relative;
 }
 
+.card-img-fijo {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  height: 400px; /* Ajusta la altura según tus necesidades */
+  object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
+}
+
 .events .card-img {
   width: calc(100% + 60px);
   margin-left: -30px;
   overflow: hidden;
   z-index: 9;
-  border-radius: 0;
+  /* border-radius: 0; */
+}
+
+.events .card-img-fijo {
+  width: calc(100% + 60px);
+  margin-left: -30px;
+  overflow: hidden;
+  z-index: 9;
+  border-radius: 8px;
 }
 
 .events .card-img img {
@@ -1588,14 +1602,34 @@ section,
   transition: all 0.3s ease-in-out;
 }
 
+.events .card-img-fijo img {
+  max-width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
 .events .card-body {
   z-index: 10;
-  background: var(--background-color);
+  background: #f1f1f1;
   border-top: 4px solid var(--background-color);
-  padding: 30px;
+  padding: 25px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  margin-top: -60px;
+  margin-top: -15px;
   transition: 0.3s;
+}
+
+.events .card-body-fijo {
+  z-index: 10;
+  background: #f1f1f1;
+  border-top: 4px solid var(--background-color);
+  padding: 25px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  margin-top: -15px;
+  transition: 0.3s;
+}
+
+.card-body-fijo {
+  height: 150px;
+  /* overflow-y: auto; */
 }
 
 .events .card-title {
@@ -1621,7 +1655,15 @@ section,
   border-color: var(--accent-color);
 }
 
+.events .card:hover .card-body-fijo {
+  border-color: var(--accent-color);
+}
+
 .events .card:hover .card-body .card-title a {
+  color: var(--accent-color);
+}
+
+.events .card:hover .card-body-fijo .card-title a {
   color: var(--accent-color);
 }
 
