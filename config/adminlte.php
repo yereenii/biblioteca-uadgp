@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Biblioteca Virtual UADGP',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Biblioteca</b>UADGP',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Biblioteca V. </b>UADGP',
+    'logo_img' => 'img/logo-transparente.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
